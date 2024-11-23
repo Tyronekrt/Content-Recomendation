@@ -8,3 +8,6 @@ class ContentAdmin(admin.ModelAdmin):
 @admin.register(UserHistory)
 class UserHistoryAdmin(admin.ModelAdmin):
     list_display = ('user', 'content', 'viewed_at')
+
+
+
