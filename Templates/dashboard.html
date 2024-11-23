@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h1>Welcome, {{ user.username }}</h1>
+<h2>Recommended for You</h2>
+<div class="content-grid">
+    {% for item in recommended %}
+        <div class="content-card">
+            <img src="{{ item.thumbnail.url }}" alt="{{ item.title }}">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.genre }}</p>
+            <a href="{% url 'content_detail' item.id %}">View Details</a>
+        </div>
+    {% endfor %}
+</div>
+
+<h2>Your Recently Watched</h2>
+<div class="content-grid">
+    {% for history_item in history %}
+        <div class="content-card">
+            <img src="{{ history_item.content.thumbnail.url }}" alt="{{ history_item.content.title }}">
+            <h3>{{ history_item.content.title }}</h3>
+            <p>Watched on {{ history_item.viewed_at }}</p>
+            <a href="{% url 'content_detail' history_item.content.id %}">View Again</a>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
